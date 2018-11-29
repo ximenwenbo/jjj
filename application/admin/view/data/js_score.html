@@ -1,0 +1,50 @@
+<script type="text/javascript">
+
+      function on(obj,id){
+//          console.log($(obj).val());
+//          return;
+
+          var xian = $(obj).val();
+          if(xian == '上线'){
+              $("#"+id).html('已上线');
+          }else{
+              $("#"+id).html('已下线');
+          }
+
+
+          $.ajax({
+
+              url:'{:url("data/shangxian","",false)}',
+              data:{id:id,xian:xian},
+              dataType:'json',
+              type:'post',
+              success:function(msg){
+
+                  if(msg.status=='success'){
+
+                      layer.alert('上线成功',{icon:6,time:1000}
+
+
+
+                      );
+                  }else{
+                      layer.alert('下线成功',{icon:6,time:1000}
+
+
+
+                      );
+
+                  }
+              }
+          });
+    }
+      function off(obj,id){
+          $("#"+id).html('已下线');
+      }
+
+
+
+
+
+
+</script>

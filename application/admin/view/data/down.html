@@ -1,0 +1,67 @@
+{include file="pub/head"}
+
+<title>添加数据 - H-ui.admin v3.1</title>
+<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<article class="page-container">
+	<form action="{:url('downExcel')}" method="post" class="form form-h
+	orizontal" id="form-member" enctype="multipart/form-data">
+
+		<input type="submit" value="下载模板">
+		</form>
+	<form action="{:url('insertExcel')}" method="post" class="form form-h
+	orizontal" id="add" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">下载模板：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="btn-upload form-group">
+				<input class="input-text upload-url" type="text" name="uploadfile" id="ggg" readonly nullmsg="请添加附件！" style="width:200px">
+				<a href="javascript:void();" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
+				<input type="file" multiple name="file-2" class="input-file">
+				</span> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>比赛名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select name="mess_id" id="" >
+					<option value="请选择">请选择</option>
+					{volist name="infos" id="v"}
+					<option value="{$v.id}">{$v.game_name}</option>
+					{/volist}
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>运动员：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select name="user_id"  >
+					<option value="请选择">请选择</option>
+					{volist name="info" id="vv"}
+					<option value="{$vv.id}">{$vv.user_name}</option>
+					{/volist}
+				</select>
+
+			</div>
+		</div>
+
+
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">上传Excel文件：</label>
+			<input type="file"  name="excel"/>
+
+
+
+		</div>
+
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+{include file="pub/foot"}

@@ -1,0 +1,49 @@
+<script type="text/javascript">
+
+
+
+
+    $(function(){
+        $('#add').submit(function(evt){
+            evt.preventDefault();//阻止浏览器提交动作
+
+            //获得添加商品的form表单信息
+            //serialize():把form表单域信息组织为请求字符串样子
+            //            name=value&name=value&name=value...
+            var shuju = $(this).serialize();
+            //console.log(shuju);//goods_name=sddddd&goods_price=3333.33&goods_number=2122&goods_weight=55&goods_introduce=%3Cp%3Esdsdsdsdsdds%3C%2Fp%3E
+
+            //ajax传递数据到服务器端存储
+            $.ajax({
+                //url:'/admin/goods/tianjia',
+                //url:'{:url("admin/goods/tianjia")}',    // /admin/users/tianjia.html
+                url:'{:url("message/xiugai","",false)}',    // admin/users/tianjia
+                data:shuju,
+                dataType:'json',
+                type:'post',
+                success:function(msg){
+
+                    if(msg.status=='success'){
+
+                        layer.alert('修改比赛成功',{icon:6},function(){
+                            //下述① 和 ②执行执行顺序要求
+                            //① 在"父级"页面把新添加商品刷新出来
+
+
+                            parent.window.location.href=parent.window.location.href;
+                            //② 关闭添加商品的弹框表单页面
+                            layer_close();
+                        });
+                    }else{
+                        //layer.alert('添加商品失败【'+msg.errorinfo+'】',{icon:5},function(){
+                        //② 关闭添加商品的弹框表单页面
+                        //layer_close();
+                        //});
+                        layer.alert('修改比赛失败',{icon:5});
+                    }
+                }
+            });
+        });
+    });
+
+</script>
